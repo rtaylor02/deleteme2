@@ -37,4 +37,13 @@ jobs:
       - name: environment variable
         env:
           STEP_VAR: "THis is a step variable"
+        run: |
+          echo $WORKFLOW_VAR
+          echo $JOB_VAR
+          echo $STEP_VAR
+          echo "The secret is: ${{ secrets.ROD_SECRET }}
+          echo "Below are the environment vars from Github:"
+          echo $GITHUB_ACTOR
+          echo $GITHUB_JOB
+          echo $GITHUB_REF
           
