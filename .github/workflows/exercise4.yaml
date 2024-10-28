@@ -1,14 +1,10 @@
-name: second workflow
+name: exercise 4
 on:
   workflow_dispatch:
 
-env:
-  WORKFLOW_VAR: "THis is workflow variable"
-
 jobs:
-  firstJob:
+  build:
     runs-on: ubuntu-latest
-    name: this is the first job
     steps:
       - uses: actions/checkout@v4
       - name: cache
