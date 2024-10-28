@@ -9,8 +9,6 @@ jobs:
   firstJob:
     runs-on: ubuntu-latest
     name: this is the first job
-    env:
-      JOB_VAR: "This is job variable"
     steps:
       - name: firstJob script
         shell: bash
@@ -28,6 +26,9 @@ jobs:
 
   secondJob:
     runs-on: ubuntu-latest
+    needs: firstJob
+    env:
+      JOB_VAR: "This is secondJob variable"
     steps:
       - name: secondJob script
         shell: bash
@@ -38,8 +39,8 @@ jobs:
         env:
           STEP_VAR: "THis is a step variable"
         run: |
-          echo "workflow var: ${{ WORKFLOW_VAR }}"
-          echo "job var: ${{ JOB_VAR }}"
+          echo $WORKFLOW_VAR
+          echo $JOB_VAR
           echo $STEP_VAR
           echo "The secret is: ${{ secrets.ROD_SECRET }}"
           echo "Below are the environment vars from Github:"
